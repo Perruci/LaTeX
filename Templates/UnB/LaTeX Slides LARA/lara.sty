@@ -1,0 +1,232 @@
+%% This is file `lara.sty'.
+%% 
+%% This file has been created by Mariana Costa Bernardes
+%% Updates: 
+%% - 2010/08/26: Version 0.1 released
+%% Pedro Santana
+%% - 2010/09/25: Title page changed in order to support the author's e-mail field
+%% Luis Figueredo
+%% - 2010/12/15: Beamer Template changed in order to increase the footline options, 
+%% - 2010/12/15: Beamer Template changed in order to limit the number of sections to appear in the headline,
+%% - 2010/12/15: Function blockbranco{}{} to use a white block,
+\ProvidesPackage{lara}[2010/08/26 version V0.1 by Mariana C. Bernardes]
+\NeedsTeXFormat{LaTeX2e}
+
+%\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{tikz} 
+\usepackage{xmpmulti}
+\usepackage{ifthen}
+\usepackage{natbib}
+\usepackage{pstricks}
+
+
+
+
+%%%======> [ 2010/12/15 ]
+%%%======> Luis Figueredo : Adjusts in the footline text
+%%%===========================================================================
+%%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%%%===========================================================================
+%%% Function : Test if the given argument is a number
+\newcommand{\isnum@return}{0}
+\newcommand{\isnum@teste}[1]{\if!\ifnum9<1#1!\else_\fi	\renewcommand{\isnum@return}{1} \else \renewcommand{\isnum@return}{0} \fi}
+
+
+%%% Adjusting the default footline values:authors,title,width
+%%%______________________________
+\newcommand{\insertfootlineauthors}{\insertauthor}
+\newcommand{\insertfootlinetitle}{\insertshorttitle} 
+\newdimen\footnotelineAuthorsWidth
+\newdimen\footnotelineTitleWidth
+\setlength\footnotelineAuthorsWidth{0.5\paperwidth}
+\setlength\footnotelineTitleWidth{0.47\paperwidth}
+
+
+%%% Manual Adjust the footline values:authors,title,width
+%%%______________________________
+\newcommand{\manualFootlineTitle}[1]{\renewcommand{\insertfootlinetitle}{#1}}
+\newcommand{\manualFootlineAuthor}[1]{\renewcommand{\insertfootlineauthors}{#1}}
+% 
+\newcommand{\manualFootlineWidth}[1]{
+\isnum@teste{#1}
+\ifthenelse{\equal{\isnum@return}{1}}{
+	\ifthenelse{{{#1 > 0}\AND{#1 < 98}}\OR{\equal{#1}{0}}}%
+{\setlength\footnotelineAuthorsWidth{0.#1\paperwidth}
+ \setlength\footnotelineTitleWidth{0.97\paperwidth}
+ \addtolength\footnotelineTitleWidth{-\footnotelineAuthorsWidth}}
+    {\typeout{====================================================================================%
+	       [WARNING]  PLEASE CHOOSE A NUMBER BETWEEN [0, 97].%
+               =========================================================================================}}%
+    }{\typeout{====================================================================================%
+	       [WARNING]  IGNORING ARG. FROM manualFootlineWidth BECAUSE IT ISN'T NUMERIC.%
+               ==========================================================================================}}%
+}
+
+
+%%% Function \blockbranco{x}{×}: 
+%%%______________________________
+\newcommand{\blockbranco}[2]{
+  \setbeamercolor{block title}{fg=larablue, bg=white} 
+  \setbeamercolor{block body}{fg=black, bg=white}   
+  \begin{block}{#1} #2	  \end{block}
+} 
+
+
+%%% Variable used to limit the number of sections to appear in the headline [Default=10]
+\newcommand{\headlineMaxSectionsDefault}{20}
+\newcommand{\headlineMaxSections}{\headlineMaxSectionsDefault}
+\newcommand{\headLineMAXSections}[1]{\renewcommand{\headlineMaxSections}{#1}}
+% 
+%%%===========================================================================
+%%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+%%%===========================================================================
+
+
+
+
+
+
+%%%-----------------------Theme-----------------------%%%
+\definecolor{larablue}{rgb}{0,0.478,0.647}
+
+\usetheme{Warsaw}
+\usecolortheme[named=larablue]{structure}	% Lara Blue
+\useinnertheme{rounded}				% Rounded blocks
+\useinnertheme{rectangles}			% Square bullets
+\setbeamertemplate{navigation symbols}{}	% No navigation symbols
+\setbeamercovered{transparent}			% Hidden elements semi-transparent
+
+\defbeamertemplate{headline}{titleslide}{} 
+\defbeamertemplate*{headline}{newHeadlineTheme} 
+{% 
+\vspace{-0.8pt}  
+  \leavevmode% 
+\ifthenelse{\equal{\headlineMaxSections}{\headlineMaxSectionsDefault}}{}
+{
+    \@tempdimb=2.4375ex% 
+    \beamer@sectionmax=\headlineMaxSections\relax
+    \beamer@subsectionmax=\headlineMaxSections\relax
+}
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax% 
+    \multiply\@tempdimb by\beamer@sectionmax% 
+  \else% 
+    \multiply\@tempdimb by\beamer@subsectionmax% 
+  \fi% 
+  \ifdim\@tempdimb>0pt% 
+    \advance\@tempdimb by 1.125ex% 
+\ifthenelse{\equal{\headlineMaxSections}{\headlineMaxSectionsDefault}}
+    {    
+%       \hskip-2.9pt
+      \hskip-6.4pt      
+      \vspace{1.2pt}
+    }
+    {   \hskip-4.4pt   }
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{section in head/foot}% 
+      \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}% 
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{subsection in head/foot}% 
+      \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.5\paperwidth}\vfil}% 
+    \end{beamercolorbox}% 
+  \fi% 
+} 
+
+
+
+
+
+
+\defbeamertemplate{footline}{titleslide}
+{
+  \leavevmode
+  \hbox{ \hskip-2pt
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}
+  \end{beamercolorbox} \hskip-2pt
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+  \end{beamercolorbox}}
+  \vskip0pt
+}
+\defbeamertemplate{footline}{bodyslide}
+{
+  \leavevmode
+  \hbox{ \hskip-2pt
+  \begin{beamercolorbox}[wd=\footnotelineAuthorsWidth,ht=2.25ex,dp=1ex,right]{author in head/foot}
+    \usebeamerfont{author in head/foot}\hspace{4pt}\insertfootlineauthors\hspace{12pt}
+  \end{beamercolorbox}\hskip-2pt
+\begin{beamercolorbox}[wd=\footnotelineTitleWidth,ht=2.25ex,dp=1ex,left]{title in head/foot}
+    \usebeamerfont{title in head/foot}\hspace{10pt}\insertfootlinetitle%%%\insertshorttitle
+  \end{beamercolorbox}\hskip-0.5pt
+  \begin{beamercolorbox}[wd=.045\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}
+    \usebeamerfont{date in head/foot}\insertframenumber{}
+  \end{beamercolorbox}}
+  \vskip0pt
+}
+
+
+
+
+%%%-----------------------Commands-----------------------%%%
+%% Bibliography
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+%% Figure transparency in overlay frames
+\newcommand{\includecoveredgraphics}[2][]{%
+     \ifthenelse{\the\beamer@coveringdepth=1}{%
+         \tikz
+             \node[inner sep=0pt,outer sep=0pt,opacity=0.15]
+                 {\includegraphics[#1]{#2}};
+     }{%
+         \tikz
+             \node[inner sep=0pt,outer sep=0pt]
+                 {\includegraphics[#1]{#2}};%
+     }
+}
+
+% Frame with Content Table before each section
+\newcommand{\makesummary}[1]{%
+\AtBeginSection[]{%
+  \ifthenelse{\the\beamer@coveringdepth=0}
+    {\begin{frame}{#1}}%
+    {\begin{frame}{Summary}}%
+  \tableofcontents[currentsection]%
+  \end{frame}}%
+}
+
+%
+\renewcommand{\maketitle}{%
+  \setbeamercolor{title}{fg=white, bg=larablue}%
+  \usetitlepagetemplate{%
+  \vbox{}%
+  \vfill%
+  \begin{centering}%
+  \vskip25pt%
+   \begin{beamerboxesrounded}[lower=title,shadow=true]{}%
+   \vspace{0.5em}\centering\Large\inserttitle\vspace{0.5em}%
+   \end{beamerboxesrounded}%
+   \vskip30pt\par\normalsize\insertauthor\vskip1em\par%
+   {\scriptsize\insertinstitute\par}\par\vskip1em%
+   \vskip15pt\insertdate\par\vskip0pt%
+   \end{centering}%
+   }%
+  \setbeamertemplate{background canvas}{%
+  \begin{picture}(0,270)%
+  \put(1,0){\includegraphics[scale=0.299]{LARA_header.eps}}%
+  \end{picture}%
+  }%
+   \setbeamertemplate{headline}[titleslide]%
+   \setbeamertemplate{footline}[titleslide]%
+   \begin{frame}%
+   \titlepage%
+   \end{frame}%
+   \setbeamertemplate{background canvas}[default]%
+   \setbeamertemplate{footline}[bodyslide]%
+   \setbeamertemplate{headline}[newHeadlineTheme]%
+   \addtobeamertemplate{headline}{}%
+   { \vskip-0.2pt%
+     \pgfuseshading{beamer@topshade}%
+     \vskip-2pt%
+   }%
+}
+
+%   \setbeamertemplate{headline}[split theme]%

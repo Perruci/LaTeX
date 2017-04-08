@@ -1,0 +1,62 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[dvips,dvipdf]{graphicx,epsfig}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{makeidx}
+\usepackage[dvips,dvipdf]{colortbl}
+
+\parindent15pt  \parskip0pt              
+\setlength\voffset{-2.0cm}
+\setlength\hoffset{-1.5cm}
+\setlength\textwidth{16.0cm}
+\setlength\textheight{24.5cm}
+\setlength\baselineskip{2cm}
+\renewcommand{\baselinestretch}{1.2}
+
+\makeindex
+
+\title{
+{\Large\sf Relatório Descritivo} \vspace{0.5cm} \\
+\textbf{\LARGE Sistema de localização por fusão GPS/INS/Altímero}\\
+}
+\author{Geovany Araújo Borges \vspace{2mm}\\
+\it Laboratório de Robótica e Automação (LARA) \\
+\it Grupo de Automação, Robótica e Visão Computacional (GRAV)\\
+\it Departamento de Engenharia El\'{e}trica - FT - UnB\\
+\it Caixa Postal 4.386 - Bras\'{i}lia - DF - Brasil\\
+}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+O resumo deve ser iniciado por uma breve frase expondo o principal objeto do relatório. Em seguida suas características são mostradas. Simulações e experimentos, se houver, devem ser brevemente comentados.
+\end{abstract}
+
+\section{Introdução} 
+
+\indent Um primeiro blá introduzindo ao leitor o contexto do problema, uma breve descrição, o que foi realizado e o teor do resto do documento \cite{book:johnson:1980}.
+
+O restante deste documento está organizado nas seguintes seções. A Seção \ref{sec:secprimeira} descreve uma coisa. Uma outra coisa é descrita na Seção \ref{sec:secsegunda}. Considerando-se o que foi apresentado, a Seção \ref{sec:conclusoes} apresenta as conclusões deste relatório. 
+
+\section{Seção primeira} \label{sec:secprimeira}
+
+\section{Seção segunda} \label{sec:secsegunda}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{figs/unb.eps}
+\caption{Figura exemplo.}
+\label{fig:devhelp}
+\end{figure} 
+
+\section{Conclusões}\label{sec:conclusoes}
+
+\bibliographystyle{unsrt} 
+\bibliography{report}
+
+\appendix
+
+\end{document}          

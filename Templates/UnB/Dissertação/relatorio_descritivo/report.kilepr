@@ -1,0 +1,43 @@
+[General]
+img_extIsRegExp=false
+img_extensions=.eps .pdf .dvi .ps .fig .gif .jpg .jpeg .png
+kileprversion=1
+kileversion=1.9
+lastDocument=report.tex
+masterDocument=report.tex
+name=report
+pkg_extIsRegExp=false
+pkg_extensions=.cls .sty .dtx
+src_extIsRegExp=false
+src_extensions=.tex .ltx .bib .mp
+
+[Tool/MakeIndex/Default]
+options='%S.idx'
+
+[Tools]
+MakeIndex=
+QuickBuild=
+
+[item:report.bib]
+archive=true
+column=12
+encoding=ISO 8859-1
+highlight=BibTeX
+line=4
+open=true
+
+[item:report.kilepr]
+archive=true
+column=2031616
+encoding=
+highlight=
+line=0
+open=false
+
+[item:report.tex]
+archive=false
+column=56
+encoding=ISO 8859-1
+highlight=LaTeX
+line=29
+open=true

@@ -1,0 +1,148 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lara}
+\usepackage{epstopdf}
+
+
+
+%%------------------- Front Cover -------------------%% 
+\title{Presentation Long Title}
+\institute{E-mail\\ \vspace{15pt}Institution Name}
+\author{Author Name}
+\date{Date}
+
+
+%%--------------[Optional] Headline Options -------------------%% 
+%% Manual adjust the headline size according to the number of sections you would like
+%% to appear in the headline. Useful to eliminate the references from the headline.
+% \headLineMAXSections{2}
+
+
+%%--------------[Optional] Footline Options -------------------%% 
+%% If you like to use the Tradional footline, i.e., [Left: Full name], [right: Full title] ==> Comment all lines below.
+%%
+%%%%%%%%%% Other options (1) - Right and Left footline (no changes in the division width):
+\manualFootlineTitle{Authors in footline - right}
+\manualFootlineAuthor{Authors in footline - left}
+%%
+%%%%%%%%%% Other options (2) - only Authors name (i.e. width 97 = maximum):
+% \manualFootlineTitle{}
+% \manualFootlineAuthor{Authors in the footline}
+% \manualFootlineWidth{97}
+%%
+%%%%%%%%%% Other options (3) - only title (i.e. width 0 = minimum):
+% \manualFootlineTitle{Title in footline}
+% \manualFootlineAuthor{}
+% \manualFootlineWidth{0}
+
+
+
+
+%%------------------- BEGIN DOCUMENT-------------------%% 
+\begin{document}
+\maketitle
+\makesummary{Table of Contents}
+
+
+
+%%--------------- Presentation Content ---------------%%
+
+\section{Section 1}
+\subsection{Subsection 1}
+\frame
+{
+  \frametitle{Slide Title}
+  \vspace{25pt}
+    \begin{enumerate}
+     \item First item  
+     \begin{itemize}
+      \item First subitem
+      \item Second subitem
+     \end{itemize}
+     \item Second item
+     \item Third item
+    \end{enumerate}
+}
+\frame
+{
+  \frametitle{Slide with overlay}
+  \vspace{25pt}
+    \begin{enumerate}
+     \item First item \pause
+     \begin{itemize}
+      \item First subitem
+      \item Second subitem
+     \end{itemize}
+     \item Second item \pause
+     \item Third item
+    \end{enumerate}
+}
+\subsection{Subsection 2}
+\frame 
+{
+  \frametitle{Slide with columns and blocks}
+  \vspace{25pt}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    \begin{block}{Block title}
+      \begin{itemize}
+	\item Item 1
+	\item Item 2
+	\end{itemize}
+    \end{block}
+    %Block Branco:
+    \blockbranco{Title in blue}{ body in black}
+    \column{0.5\textwidth}
+      \includegraphics[width=0.5\textwidth]{LARA_logo.eps}
+   \end{columns}
+}
+\frame 
+{
+  \frametitle{Slide with figure in overlay}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+      \includecoveredgraphics[width=0.5\textwidth]{LARA_logo.eps} \pause
+    \column{0.5\textwidth}
+      \includecoveredgraphics[width=0.5\textwidth]{LARA_logo.eps}
+   \end{columns}
+}
+\section{Section 2}
+\subsection{Another Subsection}
+\frame
+{
+  \frametitle{Animated images}
+  \begin{beamerboxesrounded}[lower=date in head/foot,shadow=true]{}
+    This is a beamer box... \cite{article:dummy}
+    Dummy text, dummy text, dummy text, dummy text, dummy text, dummy text, 
+    dummy text, dummy text, dummy text, dummy text, dummy text, dummy text, 
+    dummy text, dummy text, dummy text, dummy text, dummy text, dummy text, 
+    dummy text, dummy text, dummy text, dummy text, dummy text, dummy text.
+  \end{beamerboxesrounded}
+
+    To use animation, make a sequence of images with same name in number sequence.
+    \setbeamercovered{invisible}
+    \begin{center}
+      %\multiinclude[format=eps,graphics={width=\textwidth}]{fig} %fig-0.eps, fig-1.eps, ..., fig-n.eps
+    \end{center} 
+    \setbeamercovered{transparent}
+}
+\frame
+{
+  \frametitle{Tables}
+  \begin{table}
+   \begin{tabular}{c|c|c|c|}
+      \cline{2-4}& \multicolumn{3}{c|}{xxx}\\ \hline
+      \multicolumn{1}{|c|}{A} & B & C & D \\ \hline
+      \multicolumn{1}{|c|}{A1} & & & \\ \hline
+      \multicolumn{1}{|c|}{A2} & & & \\ \hline
+      \multicolumn{1}{|c|}{A3} & & & \\ \hline
+      \multicolumn{1}{|c|}{A4} & & & \\ \hline
+      \multicolumn{1}{|c|}{A5} & & & \\ \hline
+    \end{tabular}
+  \end{table}
+}
+\tiny\bibliography{bibliography}
+
+\end{document}
